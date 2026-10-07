@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuera del Molde — Piensa. Conecta. Actúa.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+:root{--cream:#f7f1e8;--paper:#fffaf2;--ink:#211e1b;--brown:#55463b;--pink:#e9b8b5;--green:#a8b99b;--yellow:#e9cf72;--white:#fffdf9}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden;cursor:none}
+.cursor{width:18px;height:18px;border:1.5px solid var(--ink);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s}
+.cursor-dot{width:5px;height:5px;background:var(--ink);border-radius:50%;position:fixed;pointer-events:none;z-index:10000;transform:translate(-50%,-50%)}
+.cursor.big{width:65px;height:65px;background:var(--ink);mix-blend-mode:multiply}
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:22px 5vw;display:flex;justify-content:space-between;align-items:center;transition:.4s}
+nav.scrolled{background:rgba(247,241,232,.88);backdrop-filter:blur(18px);padding:14px 5vw;border-bottom:1px solid rgba(33,30,27,.08)}
+.logo{font-weight:800;letter-spacing:-1px;font-size:1rem}.logo span{display:block;font-size:.55rem;letter-spacing:3px;font-weight:500;margin-top:2px}
+.nav-links{display:flex;gap:28px;align-items:center}.nav-links a{color:var(--ink);text-decoration:none;font-size:.82rem;font-weight:600;position:relative}.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--ink);transition:.3s}.nav-links a:hover::after{width:100%}
+.join-btn{border:1px solid var(--ink);padding:11px 18px;border-radius:50px;transition:.3s}.join-btn:hover{background:var(--ink);color:var(--white)!important}
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:120px 6vw 80px}
+.noise{position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.blob{position:absolute;border-radius:50%;filter:blur(1px);animation:float 8s ease-in-out infinite}.blob.one{width:420px;height:420px;background:var(--pink);opacity:.42;top:7%;left:-120px}.blob.two{width:320px;height:320px;background:var(--green);opacity:.38;right:-90px;bottom:4%;animation-delay:-3s}.blob.three{width:150px;height:150px;background:var(--yellow);opacity:.5;right:18%;top:18%;animation-delay:-5s}
+@keyframes float{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(25px,-30px) rotate(8deg)}}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:1100px}.eyebrow{text-transform:uppercase;letter-spacing:5px;font-size:.68rem;margin-bottom:25px;opacity:.7;animation:fadeUp 1s .1s both}
+.hero h1{font-size:clamp(4.5rem,12vw,10rem);line-height:.78;letter-spacing:-8px;font-weight:700;animation:heroIn 1.2s .2s both}.hero h1 span{font-family:"Playfair Display",serif;font-style:italic;font-weight:500}
+.hero-sub{max-width:570px;margin:45px auto 0;font-size:1.1rem;line-height:1.7;animation:fadeUp 1s .7s both}.hero-buttons{margin-top:32px;display:flex;gap:14px;justify-content:center;animation:fadeUp 1s .9s both}
+.btn{padding:15px 25px;border-radius:50px;border:1px solid var(--ink);text-decoration:none;color:var(--ink);font-weight:600;font-size:.85rem;transition:.35s;display:inline-block}.btn.primary{background:var(--ink);color:var(--white)}.btn:hover{transform:translateY(-5px);box-shadow:0 15px 30px rgba(0,0,0,.12)}
+.scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:.65rem;letter-spacing:3px;opacity:.55}
+@keyframes heroIn{from{opacity:0;transform:translateY(60px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.marquee{overflow:hidden;background:var(--ink);color:var(--cream);padding:18px 0;transform:rotate(-1deg) scale(1.03)}.marquee-track{display:flex;width:max-content;animation:marquee 24s linear infinite}.marquee span{font-family:"Playfair Display",serif;font-style:italic;font-size:1.5rem;margin:0 35px}@keyframes marquee{to{transform:translateX(-50%)}}
+section{padding:130px 7vw;position:relative}.section-label{text-transform:uppercase;letter-spacing:4px;font-size:.68rem;opacity:.55;margin-bottom:20px}.section-title{font-size:clamp(2.8rem,6vw,6rem);line-height:.95;letter-spacing:-4px;max-width:900px}.section-title em{font-family:"Playfair Display",serif;font-weight:500}
+.questions{background:var(--paper)}.question-wrap{max-width:1100px;margin:auto}.question{border-top:1px solid rgba(33,30,27,.2);padding:35px 0;display:flex;justify-content:space-between;align-items:center;gap:40px;transition:.4s}.question:last-child{border-bottom:1px solid rgba(33,30,27,.2)}.question h3{font-size:clamp(1.7rem,4vw,3.8rem);letter-spacing:-2px;font-weight:500;transition:.4s}.question p{max-width:300px;line-height:1.6;opacity:.6}.question:hover h3{transform:translateX(20px);font-family:"Playfair Display",serif;font-style:italic}
+.intro{min-height:85vh;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.intro-copy p{margin-top:35px;font-size:1.1rem;line-height:1.8;max-width:550px}.big-word{font-size:clamp(5rem,13vw,13rem);font-weight:800;letter-spacing:-12px;line-height:.7;transform:rotate(-7deg)}.big-word span{display:block;font-family:"Playfair Display",serif;font-weight:500;font-style:italic;margin-left:70px}
+.pillars{background:#211e1b;color:var(--cream)}.pillar-grid{margin-top:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.pillar{min-height:470px;padding:45px;border:1px solid rgba(255,255,255,.15);position:relative;overflow:hidden;transition:.5s}.pillar-number{font-size:.7rem;opacity:.5}.pillar h3{font-size:3.5rem;margin-top:150px;letter-spacing:-3px}.pillar p{margin-top:20px;line-height:1.7;opacity:.65}.pillar::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;top:-180px;right:-100px;transition:.7s}.pillar:nth-child(1)::before{background:var(--pink)}.pillar:nth-child(2)::before{background:var(--green)}.pillar:nth-child(3)::before{background:var(--yellow)}.pillar:hover{transform:translateY(-15px)}.pillar:hover::before{transform:scale(1.8)}
+.topics{background:var(--cream)}.topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:70px}.topic{aspect-ratio:1;border:1px solid rgba(33,30,27,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.1rem;padding:25px;transition:.5s cubic-bezier(.2,.8,.2,1)}.topic:hover{transform:rotate(8deg) scale(1.08);background:var(--ink);color:var(--cream)}
+.experiences{background:var(--paper)}.experience-grid{margin-top:70px;display:grid;grid-template-columns:1.3fr .7fr;gap:20px}.card{min-height:430px;padding:40px;position:relative;overflow:hidden;border-radius:4px;transition:.5s}.card:first-child{background:var(--pink)}.card:nth-child(2){background:var(--green)}.card:nth-child(3){background:var(--yellow)}.card h3{font-size:3rem;letter-spacing:-2px;position:relative;z-index:2}.card p{max-width:300px;line-height:1.6;margin-top:25px;position:relative;z-index:2}.card .circle{position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.35);right:-70px;bottom:-90px;transition:.7s}.card:hover{transform:translateY(-12px) rotate(-1deg)}.card:hover .circle{transform:scale(1.5) rotate(25deg)}
+.manifesto{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--green);text-align:center}.manifesto-inner{max-width:1100px}.manifesto p{font-size:clamp(2rem,5vw,5rem);line-height:1.15;letter-spacing:-3px}.manifesto p span{font-family:"Playfair Display",serif;font-style:italic}.manifesto-small{margin-top:60px;letter-spacing:6px;font-size:.75rem}
+.community{text-align:center}.community .section-title{margin:auto}.community-text{max-width:650px;margin:40px auto;font-size:1.1rem;line-height:1.8}.quote{margin:90px auto 0;font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(2rem,4vw,4rem);max-width:900px}
+.cta{background:var(--ink);color:var(--cream);text-align:center;min-height:75vh;display:flex;flex-direction:column;justify-content:center;align-items:center}.cta h2{font-size:clamp(4rem,10vw,10rem);line-height:.8;letter-spacing:-8px}.cta h2 em{font-family:"Playfair Display",serif;font-weight:500}.cta p{margin:45px 0 30px;opacity:.65}.cta .btn{border-color:var(--cream);color:var(--cream)}.cta .btn:hover{background:var(--cream);color:var(--ink)}
+footer{background:var(--ink);color:var(--cream);border-top:1px solid rgba(255,255,255,.1);padding:40px 7vw;display:flex;justify-content:space-between;align-items:center}footer small{opacity:.5}footer a{color:var(--cream);text-decoration:none;margin-left:20px;font-size:.8rem}
+.reveal{opacity:0;transform:translateY(60px);transition:1s cubic-bezier(.2,.8,.2,1)}.reveal.active{opacity:1;transform:translateY(0)}
+
+/* PLANES — visual, mobile-first */
+.plans{background:var(--cream);overflow:hidden}
+.plans-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:65px}
+.plans-head .section-title{max-width:760px}
+.plans-note{max-width:290px;line-height:1.65;opacity:.62;font-size:.9rem}
+.plans-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr;grid-template-rows:280px 280px;gap:14px}
+.plan-card{position:relative;overflow:hidden;padding:30px;border-radius:2px;border:1px solid rgba(33,30,27,.13);min-height:0;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;background:var(--paper)}
+.plan-card:hover{transform:translateY(-8px) rotate(-.5deg);box-shadow:0 25px 55px rgba(33,30,27,.12)}
+.plan-card.big{grid-row:span 2;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:space-between}
+.plan-card.pink{background:var(--pink)}.plan-card.green{background:var(--green)}.plan-card.yellow{background:var(--yellow)}
+.plan-num{font-size:.68rem;letter-spacing:3px;opacity:.58}.plan-card h3{font-size:clamp(1.8rem,3vw,3.4rem);letter-spacing:-2px;line-height:.95;position:relative;z-index:2}.plan-card p{font-size:.9rem;line-height:1.55;max-width:300px;margin-top:14px;position:relative;z-index:2}.plan-tag{display:inline-block;margin-top:20px;border:1px solid currentColor;border-radius:99px;padding:7px 11px;font-size:.63rem;letter-spacing:1.5px;text-transform:uppercase;position:relative;z-index:2}
+.plan-shape{position:absolute;border-radius:50%;width:220px;height:220px;right:-65px;bottom:-90px;background:rgba(255,255,255,.34);transition:transform .7s}.plan-card:hover .plan-shape{transform:scale(1.35) rotate(18deg)}
+.plan-card.big .plan-shape{width:360px;height:360px;right:-140px;bottom:-170px;background:var(--yellow);opacity:.85}.plan-card.big .plan-shape:after{content:'?';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:15rem;color:var(--ink);opacity:.8;transform:rotate(-15deg)}
+.plan-list{list-style:none;margin-top:25px;display:grid;gap:9px;position:relative;z-index:2}.plan-list li{font-size:.9rem;line-height:1.35;padding-left:20px;position:relative}.plan-list li:before{content:'✦';position:absolute;left:0;top:0}
+.mobile-menu{display:none;border:1px solid var(--ink);width:42px;height:42px;border-radius:50%;background:transparent;color:var(--ink);font-size:1.1rem}
+@media(max-width:800px){
+  nav{padding:16px 5vw}.mobile-menu{display:block}.nav-links{display:none;position:absolute;top:72px;left:5vw;right:5vw;background:var(--paper);border:1px solid rgba(33,30,27,.12);border-radius:18px;padding:14px;box-shadow:0 20px 50px rgba(0,0,0,.12);flex-direction:column;align-items:stretch;gap:4px}.nav-links.open{display:flex}.nav-links a{padding:13px 12px}.join-btn{text-align:center;margin-top:4px}.logo{font-size:.9rem}.logo span{font-size:.46rem;letter-spacing:2px}
+  .hero{min-height:92vh;padding:110px 7vw 70px}.hero h1{font-size:clamp(3.9rem,19vw,7rem);letter-spacing:-5px}.hero-sub{font-size:1rem;margin-top:30px}.hero-buttons{flex-direction:column;align-items:stretch;margin-top:26px}.hero-buttons .btn{width:100%;text-align:center}.scroll{bottom:20px}
+  section{padding:82px 6vw}.section-title{letter-spacing:-2.5px}.question{padding:28px 0}.question h3{font-size:clamp(1.65rem,8vw,2.8rem);letter-spacing:-1.3px}.question p{font-size:.9rem}
+  .intro{gap:35px}.big-word{font-size:24vw;letter-spacing:-7px}.big-word span{margin-left:13vw}
+  .pillar-grid{margin-top:45px;gap:10px}.pillar{min-height:360px;padding:28px}.pillar h3{font-size:2.7rem;margin-top:105px}.pillar p{font-size:.9rem}
+  .topic-grid{gap:10px;margin-top:45px}.topic{font-size:.78rem;padding:15px}
+  .experience-grid{margin-top:45px;gap:10px}.card{min-height:310px;padding:28px}.card h3{font-size:2.4rem}.card p{font-size:.9rem}
+  .plans-head{display:block;margin-bottom:42px}.plans-note{margin-top:18px}.plans-grid{display:flex;flex-direction:column;gap:10px}.plan-card,.plan-card.big{min-height:300px;padding:25px}.plan-card.big{min-height:430px}.plan-card.big .plan-shape{width:290px;height:290px;right:-125px;bottom:-125px}.plan-card.big .plan-shape:after{font-size:11rem}.plan-card h3{font-size:2.45rem}.plan-card p,.plan-list li{font-size:.88rem}
+  .manifesto{min-height:85vh}.manifesto p{font-size:clamp(1.8rem,8vw,3.2rem);letter-spacing:-1.5px}.manifesto-small{margin-top:40px;letter-spacing:3px}
+  .community-text{font-size:1rem;margin:28px auto}.quote{margin-top:60px;font-size:clamp(1.8rem,7vw,3rem)}.cta{min-height:70vh}.cta h2{font-size:clamp(4rem,18vw,7rem);letter-spacing:-5px}.cta p{margin:35px 0 25px}footer{padding:30px 6vw;align-items:flex-start}footer div{display:flex;flex-wrap:wrap;gap:14px}footer a{margin-left:0}
+}
+
+@media(max-width:800px){body{cursor:auto}.cursor,.cursor-dot{display:none}.nav-links{display:none}.nav-links a{font-size:.75rem}.hero h1{letter-spacing:-5px;font-size:clamp(4rem,18vw,7rem)}section{padding:90px 6vw}.intro{grid-template-columns:1fr;gap:60px}.big-word{font-size:25vw}.pillar-grid{grid-template-columns:1fr}.topic-grid{grid-template-columns:repeat(2,1fr)}.experience-grid{grid-template-columns:1fr}.question{display:block}.question p{margin-top:15px}.cta h2{letter-spacing:-4px}footer{flex-direction:column;gap:20px}}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div><div class="cursor-dot"></div>
+
+<nav id="nav">
+<div class="logo">FUERA DEL MOLDE<span>PIENSA · CONECTA · ACTÚA</span></div>
+<div class="nav-links">
+<a href="#conocenos">Conócenos</a>
+<a href="#pilares">La comunidad</a>
+<a href="#experiencias">Experiencias</a><a href="#planes">Planes</a>
+<a href="#manifiesto">Manifiesto</a>
+<a class="join-btn" href="https://wa.me/522382768826?text=Hola%20Faty%2C%20quiero%20m%C3%A1s%20info%2C%20me%20interes%C3%B3%20ser%20parte%20de%20Fuera%20del%20Molde%20!!" target="_blank" rel="noopener">Únete</a>
+</div><button class="mobile-menu" id="mobileMenu" aria-label="Abrir menú">☰</button>
+</nav>
+
+<header class="hero">
+<div class="noise"></div><div class="blob one"></div><div class="blob two"></div><div class="blob three"></div>
+<div class="hero-content">
+<div class="eyebrow">COMUNIDAD JUVENIL · MÉXICO</div>
+<h1>FUERA<br>DEL <span>MOLDE</span></h1>
+<p class="hero-sub">Un espacio para jóvenes que quieren pensar, conectar, crear y hacer algo con aquello que piensan.</p>
+<div class="hero-buttons">
+<a class="btn primary" href="#conocenos">DESCUBRIR</a>
+<a class="btn" href="https://wa.me/522382768826?text=Hola%20Faty%2C%20quiero%20m%C3%A1s%20info%2C%20me%20interes%C3%B3%20ser%20parte%20de%20Fuera%20del%20Molde%20!!" target="_blank" rel="noopener">QUIERO SER PARTE</a>
+</div>
+</div>
+<div class="scroll">↓ DESLIZA</div>
+</header>
+
+<div class="marquee"><div class="marquee-track">
+<span>PENSAR</span><span>✦</span><span>CONECTAR</span><span>✦</span><span>ACTUAR</span><span>✦</span>
+<span>PENSAR</span><span>✦</span><span>CONECTAR</span><span>✦</span><span>ACTUAR</span><span>✦</span>
+</div></div>
+
+<section class="questions"><div class="question-wrap reveal">
+<div class="section-label">EMPECEMOS POR UNA PREGUNTA</div>
+<div class="question"><h3>¿Y si dejamos de vivir en automático?</h3><p>Estamos rodeados de información. Pero eso no significa que siempre nos detengamos a pensar.</p></div>
+<div class="question"><h3>¿Estamos realmente conectados?</h3><p>Podemos hablar con cualquiera, en cualquier momento. Pero conectar es algo diferente.</p></div>
+<div class="question"><h3>¿Dónde quedaron las conversaciones?</h3><p>Las preguntas que no caben en una pantalla también necesitan un lugar.</p></div>
+</div></section>
+
+<section class="intro" id="conocenos">
+<div class="intro-copy reveal">
+<div class="section-label">POR ESO EXISTIMOS</div>
+<h2 class="section-title">Esto es <em>Fuera del Molde.</em></h2>
+<p>Una comunidad juvenil para pensar, conectar y actuar. Un lugar donde las ideas pueden convertirse en conversaciones, experiencias y proyectos.</p>
+<p>No queremos decirte qué pensar. Queremos crear un espacio donde puedas pensar por ti mismo, conocer personas diferentes y descubrir qué puedes hacer con aquello que te importa.</p>
+</div>
+<div class="big-word reveal">MÁS<span>allá.</span></div>
+</section>
+
+<section class="pillars" id="pilares">
+<div class="section-label">NUESTRA FORMA DE HACERLO</div>
+<h2 class="section-title reveal">Tres palabras.<br>Una <em>comunidad.</em></h2>
+<div class="pillar-grid">
+<article class="pillar reveal"><div class="pillar-number">01</div><h3>PENSAR</h3><p>Filosofía, preguntas, pensamiento crítico, lectura, actualidad y conversaciones que nos hagan mirar el mundo de otra manera.</p></article>
+<article class="pillar reveal"><div class="pillar-number">02</div><h3>CONECTAR</h3><p>Personas, historias, experiencias, conversaciones y momentos que nos recuerden que detrás de cada pantalla hay alguien.</p></article>
+<article class="pillar reveal"><div class="pillar-number">03</div><h3>ACTUAR</h3><p>Porque una idea también puede convertirse en una acción, un proyecto, una experiencia o una pequeña transformación.</p></article>
+</div>
+</section>
+
+<section class="topics">
+<div class="section-label">LO QUE NOS INSPIRA</div>
+<h2 class="section-title reveal">No tenemos<br><em>una sola conversación.</em></h2>
+<div class="topic-grid reveal">
+<div class="topic">FILOSOFÍA</div><div class="topic">ARTE</div><div class="topic">EDUCACIÓN</div><div class="topic">SOCIEDAD</div>
+<div class="topic">MEDIO AMBIENTE</div><div class="topic">TECNOLOGÍA</div><div class="topic">CULTURA</div><div class="topic">RELACIONES HUMANAS</div>
+</div>
+</section>
+
+<section class="experiences" id="experiencias">
+<div class="section-label">FUERA DEL MOLDE EN ACCIÓN</div>
+<h2 class="section-title reveal">Las ideas también<br><em>se viven.</em></h2>
+<div class="experience-grid">
+<article class="card reveal"><h3>CONVERSAR</h3><p>Debates, encuentros, preguntas, lecturas y conversaciones que no terminan cuando termina la reunión.</p><div class="circle"></div></article>
+<article class="card reveal"><h3>CREAR</h3><p>Arte, cultura, dinámicas y proyectos para convertir nuestras ideas en experiencias.</p><div class="circle"></div></article>
+<article class="card reveal"><h3>ACTUAR</h3><p>Proyectos y acciones que conectan lo que pensamos con nuestro entorno.</p><div class="circle"></div></article>
+</div>
+</section>
+
+<section class="plans" id="planes">
+<div class="plans-head">
+  <div>
+    <div class="section-label">PLANES QUE SÍ DAN GANAS</div>
+    <h2 class="section-title reveal">No solo queremos <em>hablar.</em><br>Queremos hacer cosas.</h2>
+  </div>
+  <p class="plans-note reveal">Ideas sencillas, encuentros inesperados y acciones que nos saquen un rato de la pantalla y nos acerquen a otras personas.</p>
+</div>
+<div class="plans-grid">
+  <article class="plan-card big reveal">
+    <div><div class="plan-num">01 · PLAN DE HOY</div><h3 style="margin-top:32px">¿Y si hoy hacemos algo que no habíamos hecho?</h3><p>Planes espontáneos para conocer gente, conversar, caminar, crear o simplemente dejar de decir “luego”.</p><span class="plan-tag">Sin planear demasiado</span></div>
+    <ul class="plan-list"><li>Conocer personas nuevas</li><li>Salir de la rutina</li><li>Hacer algo juntos</li><li>Convertir una idea en plan</li></ul><div class="plan-shape"></div>
+  </article>
+  <article class="plan-card pink reveal"><div class="plan-num">02 · UNA FRASE</div><h3>Regalarle un buen día a alguien.</h3><p>Salir con frases bonitas y un pequeño detalle para un desconocido.</p><span class="plan-tag">Acción solidaria</span><div class="plan-shape"></div></article>
+  <article class="plan-card green reveal"><div class="plan-num">03 · EL BANQUETE</div><h3>Una cena para discutir la vida.</h3><p>Una experiencia inspirada en <em>El Banquete</em>: comida, preguntas, filosofía y personas.</p><span class="plan-tag">Experiencia</span><div class="plan-shape"></div></article>
+  <article class="plan-card yellow reveal"><div class="plan-num">04 · DICIEMBRE</div><h3>Este año, repartimos.</h3><p>Ponchecito, juguetes, ropa calientita y un rato de compañía para nuestra comunidad.</p><span class="plan-tag">Acción comunitaria</span><div class="plan-shape"></div></article>
+  <article class="plan-card reveal"><div class="plan-num">05 · SIN FILTRO</div><h3>Debates, preguntas y conversaciones.</h3><p>Porque hay temas que merecen una mesa, tiempo y personas dispuestas a pensar distinto.</p><span class="plan-tag">Pensar juntos</span><div class="plan-shape"></div></article>
+</div>
+</section>
+
+<section class="manifesto" id="manifiesto">
+<div class="manifesto-inner reveal">
+<div class="section-label">NUESTRO MANIFIESTO</div>
+<p>No queremos darte <span>respuestas.</span><br><br>Queremos que aprendas a hacer <span>preguntas.</span><br><br>No queremos que pienses como <span>nosotros.</span><br><br>Queremos que pienses <span>por ti.</span></p>
+<div class="manifesto-small">PIENSA · CONECTA · ACTÚA</div>
+</div>
+</section>
+
+<section class="community">
+<div class="section-label">LA COMUNIDAD</div>
+<h2 class="section-title reveal">Quizá este<br><em>sea tu lugar.</em></h2>
+<p class="community-text reveal">Si te gusta hacer preguntas que nadie parece hacerse, si quieres conocer personas con intereses distintos, si quieres conversar más allá de lo superficial, crear algo o simplemente encontrar un lugar donde no tengas que encajar...</p>
+<a href="https://wa.me/522382768826?text=Hola%20Faty%2C%20quiero%20m%C3%A1s%20info%2C%20me%20interes%C3%B3%20ser%20parte%20de%20Fuera%20del%20Molde%20!!" target="_blank" rel="noopener" class="btn primary reveal">CONOCER LA COMUNIDAD</a>
+<div class="quote reveal">“No tienes que pensar igual que nosotros. De hecho, esperamos que no lo hagas.”</div>
+</section>
+
+<section class="cta" id="unete">
+<div class="section-label">AHORA TE TOCA A TI</div>
+<h2 class="reveal">¿QUÉ<br><em>pregunta</em><br>TRAES?</h2>
+<p>Fuera del Molde se construye entre personas.</p>
+<a href="https://wa.me/522382768826?text=Hola%20Faty%2C%20quiero%20m%C3%A1s%20info%2C%20me%20interes%C3%B3%20ser%20parte%20de%20Fuera%20del%20Molde%20!!" target="_blank" rel="noopener" class="btn">QUIERO SER PARTE</a>
+</section>
+
+<footer>
+<small>© 2026 FUERA DEL MOLDE</small>
+<div><a href="#">Instagram</a><a href="https://wa.me/522382768826?text=Hola%20Faty%2C%20quiero%20m%C3%A1s%20info%2C%20me%20interes%C3%B3%20ser%20parte%20de%20Fuera%20del%20Molde%20!!" target="_blank" rel="noopener">WhatsApp</a><a href="https://wa.me/522382768826?text=Hola%20Faty%2C%20quiero%20m%C3%A1s%20info%2C%20me%20interes%C3%B3%20ser%20parte%20de%20Fuera%20del%20Molde%20!!" target="_blank" rel="noopener">Contacto</a></div>
+</footer>
+
+<script>
+const cursor=document.querySelector(".cursor"),dot=document.querySelector(".cursor-dot");
+document.addEventListener("mousemove",e=>{cursor.style.left=e.clientX+"px";cursor.style.top=e.clientY+"px";dot.style.left=e.clientX+"px";dot.style.top=e.clientY+"px"});
+document.querySelectorAll("a,.pillar,.topic,.card,.question").forEach(el=>{el.addEventListener("mouseenter",()=>cursor.classList.add("big"));el.addEventListener("mouseleave",()=>cursor.classList.remove("big"))});
+const nav=document.getElementById("nav");window.addEventListener("scroll",()=>{nav.classList.toggle("scrolled",window.scrollY>50)});
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("active")})},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+document.querySelectorAll(".btn").forEach(button=>{button.addEventListener("mousemove",e=>{const rect=button.getBoundingClientRect();const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;button.style.transform=`translate(${x*.12}px,${y*.12}px)`});button.addEventListener("mouseleave",()=>button.style.transform="")});
+window.addEventListener("mousemove",e=>{const x=e.clientX/window.innerWidth-.5,y=e.clientY/window.innerHeight-.5;document.querySelector(".blob.one").style.transform=`translate(${x*25}px,${y*25}px)`;document.querySelector(".blob.two").style.transform=`translate(${x*-20}px,${y*-20}px)`;document.querySelector(".blob.three").style.transform=`translate(${x*35}px,${y*35}px)`});
+const mobileMenu=document.getElementById("mobileMenu"); mobileMenu?.addEventListener("click",()=>{document.querySelector(".nav-links").classList.toggle("open"); mobileMenu.textContent=document.querySelector(".nav-links").classList.contains("open")?"×":"☰"}); document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>document.querySelector(".nav-links").classList.remove("open")));
+</script>
+</body>
+</html>
